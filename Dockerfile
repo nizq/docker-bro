@@ -1,7 +1,6 @@
-FROM gliderlabs/alpine:3.3
+FROM alpine:3.3
 
 MAINTAINER nizq <ni.zhiqiang@gmail.com>
-
 
 RUN echo "===> Adding compile runtime..." && \
     apk add --update git perl cmake \
