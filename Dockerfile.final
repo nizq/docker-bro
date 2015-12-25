@@ -11,4 +11,4 @@ ADD bro.tar.gz /
 VOLUME ["/data/logs", "/data/config"]
 WORKDIR /data/logs
 
-ENTRYPOINT ["/usr/local/bin/bro","-v"]
+ENTRYPOINT [ "/usr/local/bin/bro" ]
