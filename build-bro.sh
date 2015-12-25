@@ -33,7 +33,3 @@ make install
 echo "===> Packaging..."
 tar zcvf $FINAL_DIR/bro.tar.gz $PREFIX
 
-# echo "===> Making bro docker..."
-# cp $SOURCE/Dockerfile.final $FINAL_DIR/Dockerfile
-# cd $FINAL_DIR
-# docker build -t defstack/bro .

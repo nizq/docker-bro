@@ -3,8 +3,8 @@ FROM gliderlabs/alpine:3.3
 MAINTAINER nizq <ni.zhiqiang@gmail.com>
 
 RUN echo "===> Adding dependency..." && \
-    apk add --update zlib openssl libstdc++ \
-        libpcap geoip libgcc
+    apk add --update zlib openssl libstdc++ libpcap geoip libgcc && \
+    rm -rf /var/cache/apk/*
 
 ADD bro.tar.gz /
 
