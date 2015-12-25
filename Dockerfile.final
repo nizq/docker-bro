@@ -1,0 +1,14 @@
+FROM gliderlabs/alpine:3.3
+
+MAINTAINER nizq <ni.zhiqiang@gmail.com>
+
+RUN echo "===> Adding dependency..." && \
+    apk add --update zlib openssl libstdc++ \
+        libpcap geoip libgcc
+
+ADD bro.tar.gz /
+
+VOLUME ["/data/logs", "/data/config"]
+WORKDIR /data/logs
+
+CMD ["/usr/local/bin/bro","-v"]
