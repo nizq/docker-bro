@@ -11,4 +11,7 @@ ADD bro.tar.gz /
 VOLUME ["/data/logs", "/data/config"]
 WORKDIR /data/logs
 
+ENV BROPATH .:/data/config:/usr/local/share/bro:/usr/local/share/bro/policy:/usr/local/share/bro/site
+
 ENTRYPOINT [ "/usr/local/bin/bro" ]
+CMD [ "-h" ]
