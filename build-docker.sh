@@ -7,4 +7,4 @@ docker run --rm -ti \
 
 cp Dockerfile.final final/Dockerfile
 cd final
-docker build -t nizq/bro-fanout .
+docker build -t nizq/bro:fanout .
