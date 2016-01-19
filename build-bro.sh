@@ -12,11 +12,21 @@ FINAL_DIR=$SOURCE/final
 echo "===> Cloning bro..."
 cd $BUILD_DIR
 if [ ! -d "bro" ]; then
-    git clone --recursive https://github.com/nizq/bro.git
+    git clone --recursive https://github.com/bro/bro.git
 fi
 
-echo "===> Compiling bro..."
+echo "===> Apply patches..."
 cd $BRO_DIR
+find . -name .git -exec rm -rf '{}' \;
+patch -p1 < $SOURCE/bro-musl.patch
+
+cd $BRO_DIR/aux/binpac
+patch -p1 < $SOURCE/binpac-musl.patch
+
+cd $BRO_DIR
+cp $SOURCE/FindFTS.cmake cmake
+
+echo "===> Compiling bro..."
 CC=clang ./configure --disable-broker \
   --disable-broctl --disable-broccoli \
   --disable-auxtools --prefix=$PREFIX
