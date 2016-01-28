@@ -41,5 +41,6 @@ make
 make install
 
 echo "===> Packaging..."
+strip -s /usr/local/bin/bro
 tar zcvf $FINAL_DIR/bro.tar.gz $PREFIX
 
