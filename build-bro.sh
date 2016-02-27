@@ -17,7 +17,8 @@ fi
 
 echo "===> Apply patches..."
 cd $BRO_DIR
-find . -name .git -exec rm -rf '{}' \;
+git pull
+# find . -name .git -exec rm -rf '{}' \;
 patch -p1 < $SOURCE/bro-musl.patch
 
 cd $BRO_DIR/aux/binpac
