@@ -1,0 +1,3 @@
+[submodule "bro"]
+	path = bro
+	url = https://github.com/bro/bro.git

@@ -6,19 +6,13 @@ PREFIX=/usr/local
 
 BRO_DIR=$BUILD_DIR/bro
 AF_PACKET_DIR=$BRO_DIR/aux/plugins/af_packet
-
 FINAL_DIR=$SOURCE/final
 
-echo "===> Cloning bro..."
-cd $BUILD_DIR
-if [ ! -d "bro" ]; then
-    git clone --recursive https://github.com/bro/bro.git
-fi
-
-echo "===> Apply patches..."
+echo "===> Applying patches..."
+rm -rf $BRO_DIR
+cp -r ../bro .
 cd $BRO_DIR
-git pull
-# find . -name .git -exec rm -rf '{}' \;
+git submodule update --init  --recursive --remote
 patch -p1 < $SOURCE/bro-musl.patch
 
 cd $BRO_DIR/aux/binpac
