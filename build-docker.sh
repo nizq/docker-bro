@@ -9,6 +9,5 @@ docker run --rm -ti \
        nizq/bro-build
 
 echo "===> Building bro image..."
-cp -v -f Dockerfile.final final/Dockerfile
 cd final
 docker build -t nizq/bro:fanout .

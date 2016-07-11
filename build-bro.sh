@@ -1,18 +1,22 @@
 #!/bin/sh
 
 SOURCE=/source
-BUILD_DIR=$SOURCE/build
 PREFIX=/usr/local
+
+BUILD_DIR=$SOURCE/build
+FINAL_DIR=$SOURCE/final
+
+rm -rf $FINAL_DIR $BUILD_DIR
+mkdir -p $FINAL_DIR $BUILD_DIR
 
 BRO_DIR=$BUILD_DIR/bro
 AF_PACKET_DIR=$BRO_DIR/aux/plugins/af_packet
-FINAL_DIR=$SOURCE/final
 
 echo "===> Applying patches..."
-rm -rf $BRO_DIR
-cp -r ../bro .
+cd $BUILD_DIR
+git clone --recursive git://git.bro.org/bro
+
 cd $BRO_DIR
-git submodule update --init  --recursive --remote
 patch -p1 < $SOURCE/bro-musl.patch
 
 cd $BRO_DIR/aux/binpac
@@ -38,4 +42,7 @@ make install
 echo "===> Packaging..."
 strip -s /usr/local/bin/bro
 tar zcvf $FINAL_DIR/bro.tar.gz $PREFIX
+
+echo "===> Copying Dockerfile..."
+cp -v -f $SOURCE/Dockerfile.final $FINAL_DIR/Dockerfile
 
